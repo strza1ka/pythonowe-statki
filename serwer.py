@@ -20,7 +20,8 @@ tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]]
 clients = []
-
+licznik = [0,0]
+liczbaStatkow = 1
 
 class MyUDPHandler(BaseRequestHandler):
     def handle(self):
@@ -256,11 +257,17 @@ def Strzal(tab, x, y, gracz):
             if licz == [0, 0, 0, 0] and tab[g][x][y] == 1:
                 tr = 1
                 ZatopStatek(tab, kraniec[0], kraniec[1], gracz, kier)
+                licznik[gracz-1] += 1
+                if licznik[gracz-1] == liczbaStatkow:
+                    return 2
                 print("Trafiony zatopiony")
                 return 1
             elif ZliczStatek(tab[g + 1], kraniec[0], kraniec[1], kier) == tab[g][kraniec[0]][kraniec[1]]:
                 tr = 1
                 ZatopStatek(tab, kraniec[0], kraniec[1], gracz, kier)
+                licznik[gracz-1]+=1
+                if licznik[gracz-1] == liczbaStatkow:
+                    return 2
                 print("Trafiony zatopiony")
                 return 1
             if tr == 0:

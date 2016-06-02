@@ -44,8 +44,10 @@ while True:
         break
     elif mojaTura == '2':
         print("Gratulacje! Wygrałeś!")
+        break
     elif mojaTura == '-2':
         print("Niestety, przegrałeś.")
+        break
     elif mojaTura == '1':
         #strzelaj
         data = input("strzelaj: ")
