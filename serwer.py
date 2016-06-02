@@ -24,29 +24,33 @@ clients = []
 
 class MyUDPHandler(BaseRequestHandler):
     def handle(self):
-        # dodaj clienta jeśli nie ma go w bazie klientów
+        # dodaj clienta jeśli nie ma go w bazie klientów i jest mniej niż 2 osoby
         socket = self.request[1]
-        if self.client_address not in clients:
+        if self.client_address not in clients and len(clients)<2:
             clients.append(self.client_address)
+            print("Do gry dołączył gracz: ", self.client_address)
+
             #otrzymuję tablicę ze statkami gracza
             global statki
             statki = loads(self.request[0])
-            #gracz, który pierwszy się dołączył, pierwszy zaczyna
+
+            #gracz, który pierwszy się dołączył, drugi zaczyna
             if len(clients) == 1:
                 tab[0] = statki
-                socket.sendto(str(1).encode('utf-8'), clients[0])
+                socket.sendto(str(-1).encode('utf-8'), clients[0])
             else:
                 tab[2] = statki
-                socket.sendto(str(-1).encode('utf-8'), clients[1])
+                socket.sendto(str(1).encode('utf-8'), clients[1])
             # print(clients)
-        else: 
-        #jeśli klient jest w bazie to GRAJ    
+        #jeśli klient w bazie to go obsługujemy
+        elif self.client_address in clients: 
             #data - pole w które strzelił gracz, np. 12
             data = self.request[0].decode('utf-8')  
+
             #sprawdzamy czy trafił
+            print(self.client_address, " strzelił w: ", data)
             czyTrafiony = Strzal(tab, int(data[0]), int(data[1]), KtoryGracz(self.client_address[1]))
-            print(self.client_address[0], " strzelił w: ", data)
-            print(czyTrafiony, " ---- 1 = trafił, -1 = pudło")
+
             # wysyłanie informacji pozostałym:
             ##tutaj wysyłam wszystkim klientom ~~ client[i] = (ip, port)
             for i in range(0, len(clients)):
@@ -58,7 +62,10 @@ class MyUDPHandler(BaseRequestHandler):
                     # wiadomość do strzelającego
                     socket.sendto(str(czyTrafiony).encode('utf-8'), clients[i])
                     socket.sendto(Serializuj(tab), clients[i])
-                
+        else:
+            print("Do gry chciał dołączyć ktoś nowy")
+            socket.sendto(str(3).encode('utf-8'), self.client_address)
+
 
 def KtoryGracz(port):
     if port == clients[0][1]:
@@ -203,7 +210,7 @@ def Strzal(tab, x, y, gracz):
     # gracz - nr gracza, który oddał strzał {1, 2}
     g = (gracz + 1) % 3
     # Wypisz(tab,g)
-    print(x, y)
+    #print(x, y)
     licz = [0, 0, 0, 0]
     kraniec = [x, y]
     if tab[g + 1][x][y] == 0:
