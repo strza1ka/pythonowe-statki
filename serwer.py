@@ -1,5 +1,5 @@
 # coding=utf-8
-import pickle
+from pickle import loads, dumps
 from time import sleep
 from socketserver import BaseRequestHandler, UDPServer
 
@@ -22,7 +22,6 @@ tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0
 clients = []
 
 
-
 class MyUDPHandler(BaseRequestHandler):
     def handle(self):
         # dodaj clienta jeśli nie ma go w bazie klientów
@@ -30,12 +29,14 @@ class MyUDPHandler(BaseRequestHandler):
         if self.client_address not in clients:
             clients.append(self.client_address)
             #otrzymuję tablicę ze statkami gracza
-            global tab
-            tab = pickle.loads(self.request[0])
+            global statki
+            statki = loads(self.request[0])
             #gracz, który pierwszy się dołączył, pierwszy zaczyna
             if len(clients) == 1:
+                tab[0] = statki
                 socket.sendto(str(1).encode('utf-8'), clients[0])
             else:
+                tab[2] = statki
                 socket.sendto(str(-1).encode('utf-8'), clients[1])
             # print(clients)
         else: 
@@ -69,7 +70,7 @@ def KtoryGracz(port):
 
 
 def Serializuj(tb):
-    return pickle.dumps(tb)
+    return dumps(tb)
 
 
 def ZliczStatek(tb, x, y, kier):
@@ -208,10 +209,10 @@ def Strzal(tab, x, y, gracz):
     if tab[g + 1][x][y] == 0:
         if tab[g][x][y] == 0:
             print("pudło!")
-            return -1
             tab[g + 1][x][y] = 3
+            return -1
         else:
-            tab[(gracz + 2) % 3][x][y] = 1
+            tab[g + 1][x][y] = 1
             for kier in range(0, 4):
                 if kier == 0:
                     yt = y
@@ -250,16 +251,15 @@ def Strzal(tab, x, y, gracz):
                 ZatopStatek(tab, kraniec[0], kraniec[1], gracz, kier)
                 print("Trafiony zatopiony")
                 return 1
-
             elif ZliczStatek(tab[g + 1], kraniec[0], kraniec[1], kier) == tab[g][kraniec[0]][kraniec[1]]:
+                tr = 1
+                ZatopStatek(tab, kraniec[0], kraniec[1], gracz, kier)
                 print("Trafiony zatopiony")
                 return 1
-                ZatopStatek(tab, kraniec[0], kraniec[1], gracz, kier)
-                tr = 1
             if tr == 0:
                 print("trafiony")
+                tab[g + 1][x][y] = 1
                 return 1
-                tab[(gracz + 2) % 3][x][y] = 1
     else:
         print("Już raz strzelałeś w to miejsce, wybierz inne.")
         return 1
