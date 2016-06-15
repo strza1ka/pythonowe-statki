@@ -1,7 +1,13 @@
 # coding=utf-8
 from pickle import loads, dumps
 from time import sleep
+from tkinter import *
 from socketserver import BaseRequestHandler, UDPServer
+from tkinter import *
+import tkinter as tk
+import time
+from random import randrange
+import pygame
 
 tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -46,7 +52,7 @@ class MyUDPHandler(BaseRequestHandler):
         #jeśli klient w bazie to go obsługujemy
         elif self.client_address in clients: 
             #data - pole w które strzelił gracz, np. 12
-            data = self.request[0].decode('utf-8')  
+            data = self.request[0].decode('utf-8')
 
             #sprawdzamy czy trafił
             print(self.client_address, " strzelił w: ", data)
