@@ -2,6 +2,8 @@ from pickle import loads, dumps
 from socket import *
 import pygame
 from pygame.locals import *
+from sys import exit
+
 
 # kolory
 BLACK = (0, 0, 0)
@@ -16,6 +18,7 @@ HEIGHT = 20
  
 # oddzielenie komórek
 MARGIN = 5
+
 
 tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -157,8 +160,12 @@ while True:
         done = False
         while not done:
             for event in pygame.event.get():  # zdarzenie
-                if event.type == pygame.QUIT:  # 
-                    done = True  # 
+                if event.type == pygame.QUIT:  #
+                    pygame.quit()
+                    done = True  #
+                    ##poinformować drugiego gracza, że wygrał
+                    sock.close()
+                    exit()                   
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     # odczytywanie pozycji po kliknięciu
                     pos = pygame.mouse.get_pos()
