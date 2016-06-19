@@ -27,7 +27,7 @@ tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]]
 clients = []
 licznik = [0,0]
-liczbaStatkow = 1
+liczbaStatkow = 5
 
 class MyUDPHandler(BaseRequestHandler):
     def handle(self):
@@ -65,10 +65,12 @@ class MyUDPHandler(BaseRequestHandler):
                     # wiadomość do oczekującego (tego,który nie strzelał)
                     socket.sendto(str(-czyTrafiony).encode('utf-8'), clients[i])
                     socket.sendto(Serializuj(tab), clients[i])
+
                 else:
                     # wiadomość do strzelającego
                     socket.sendto(str(czyTrafiony).encode('utf-8'), clients[i])
                     socket.sendto(Serializuj(tab), clients[i])
+
         else:
             print("Do gry chciał dołączyć ktoś nowy")
             socket.sendto(str(3).encode('utf-8'), self.client_address)
@@ -86,7 +88,7 @@ def KtoryGracz(port):
 def Serializuj(tb):
     return dumps(tb)
 
-
+ 
 def ZliczStatek(tb, x, y, kier):
     licznik = 0
     if kier == 0:

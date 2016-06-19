@@ -4,6 +4,12 @@ import pygame
 from pygame.locals import *
 from sys import exit
 
+pygame.init()
+WINDOW_SIZE = [536, 400]
+screen = pygame.display.set_mode(WINDOW_SIZE)
+ 
+# tytuł
+pygame.display.set_caption("Statki v.1")
 
 # kolory
 BLACK = (0, 0, 0)
@@ -36,61 +42,30 @@ tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]]
-statki = [[0, 0, 0, 0, 0, 0, 0, 4, 0, 0], [0, 0, 0, 0, 0, 0, 0, 4, 0, 0], [0, 0, 0, 0, 0, 0, 0, 4, 0, 0],
-        [0, 2, 2, 0, 0, 0, 0, 4, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+statki = [[0, 0, 0, 1, 0, 0, 0, 4, 0, 0], [0, 0, 0, 0, 0, 0, 0, 4, 0, 0], [0, 0, 0, 0, 0, 0, 0, 4, 0, 0],
+        [0, 2, 2, 0, 0, 0, 0, 4, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 3, 3, 3, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]]
-statki2=tab[2]
+statki2=tab[0]
+
 def Serializuj(tb):
     return dumps(tb)
 
-##def Tablicuj(tb):
-##    #mag = []
 def Wypisz(tb, n):
-    #funkcja bez GUI
     if n%2==1:
         tablica = []
         for x in range(10):
             for y in range(10):
                 if tb[n][x][y]==0:
-                    #tablica[x][y]="?"
                     tablica.append("?")
-                    #print("? ", end='')
                 elif tb[n][x][y]==1:
                     tablica.append("x")
-                    #tablica[x][y]="?"
-                    #print("x ", end='')
                 elif tb[n][x][y]==2:
                     tablica.append("X")
-                    #tablica[x][y]="?"
-                    #print("X ", end='')
                 elif tb[n][x][y]==3:
                     tablica.append("o")
-                    #tablica[x][y]="?"
-                    #print("o ", end='')
-            #tablica[x][y]=" "
-            #print()
-        #tablica.append([x])
-        
     else:
-        tablica=[]
-        for x in range(10):
-            for y in range(10):
-                if tb[n][x][y]==0:
-                    #tablica[x][y]="?"
-                    tablica.append("0")
-                    #print("? ", end='')
-                elif tb[n][x][y]==1:
-                    tablica.append("1")
-                    #tablica[x][y]="?"
-                    #print("x ", end='')
-                elif tb[n][x][y]==2:
-                    tablica.append("2")
-                    #tablica[x][y]="?"
-                    #print("X ", end='')
-                elif tb[n][x][y]==3:
-                    tablica.append("3")
-            print()
+        print(tablica)
     return tablica
 
 def ConvertTable(tab):
@@ -144,17 +119,16 @@ while True:
         print("Niestety, przegrałeś.")
         break
     elif mojaTura == '1':
-        strzelaj = "Twój ruch"
         # inicjalizacja pygame
-        pygame.init()
-        font = pygame.font.SysFont("arial", 12)
-        text = font.render("%s" %(strzelaj), True, (0, 128, 0))
+        #pygame.init()
+##        font = pygame.font.SysFont("arial", 16)
+##        text = font.render("%s" %(), True, (0, 128, 0))
 # wielkość ekranu
-        WINDOW_SIZE = [536, 500]
-        screen = pygame.display.set_mode(WINDOW_SIZE)
- 
-# tytuł
-        pygame.display.set_caption("Statki")
+##        WINDOW_SIZE = [536, 500]
+##        screen = pygame.display.set_mode(WINDOW_SIZE)
+## 
+### tytuł
+##        pygame.display.set_caption("Statki")
  
 # pętla do momentu zamknięcia programu
         done = False
@@ -184,8 +158,10 @@ while True:
                     #print (cos)
                     #magazyn.append(Wypisz(tab,1))
                     #print(magazyn)
-                    tablica=Wypisz(tab,1)
+                    tablica=Wypisz(tab,3)
                     tablica = ConvertTable(tablica)
+                    tablica2 = Wypisz(tab,1)
+                    tablica2 = ConvertTable(tablica2)
 ##                    tablica2=Wypisz(tab,0)
 ##                    tablica2= ConvertTable(tablica2)
                     #print(tablica2)
@@ -202,6 +178,15 @@ while True:
                             elif tablica[row][column] == 'X':
                                 statki2[row][column]=7
                                 #color=Black
+                            elif tablica2[row][column]=='o':
+                                statki[row][column]=5
+                                #color= Red
+                            elif tablica2[row][column] == 'x':
+                                statki[row][column]=6
+                                #color=Black
+                            elif tablica2[row][column]=='X':
+                                statki[row][column]=7
+                                #color= Red
                             else:
                                 statki2[row][column]=8
                                 #color=White
@@ -228,8 +213,14 @@ while True:
 ##                    else:
 ##                        print("Click ", pos, "Koordynaty: ", row, column)
          
-            # kolor tła
-            screen.fill(BLACK)         
+            if mojaTura == "1":
+                font = pygame.font.SysFont("arial", 16)
+                text = font.render("%s" %("Twój ruch"), True, (0, 255, 0))
+            else:
+                font = pygame.font.SysFont("arial", 16)
+                text = font.render("%s" %("Ruch przeciwnika"), True, (0, 255, 0))
+            screen.fill(BLACK)
+            screen.blit(text,(10,300))        
             # plansza - rysowanie
             for row in range(10):
                 for column in range(10):
@@ -242,6 +233,12 @@ while True:
                         color = GREEN
                     if statki[row][column] == 4:
                         color = GREEN
+                    if statki[row][column] == 5:
+                        color = BLUE
+                    if statki[row][column] == 6:
+                        color = RED
+                    if statki[row][column] == 7:
+                        color = BLACK
                     pygame.draw.rect(screen,
                                      color,
                                      [(MARGIN + WIDTH) * column + MARGIN,
@@ -284,6 +281,7 @@ while True:
         #oczekuj na odp.
         mojaTura = sock.recv(4096).decode('utf-8')
         tab=loads(sock.recv(4096))
+        pygame.display.flip()
         #Wypisz(tab,1)
         #print(tab)
 sock.close()

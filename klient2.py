@@ -2,6 +2,15 @@ from pickle import loads, dumps
 from socket import *
 import pygame
 from pygame.locals import *
+from sys import exit
+
+pygame.init()
+WINDOW_SIZE = [536, 400]
+screen = pygame.display.set_mode(WINDOW_SIZE)
+ 
+# tytuł
+pygame.display.set_caption("Statki v.2")
+
 # kolory
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -33,66 +42,44 @@ tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]]
 statki = [[0, 0, 0, 0, 0, 0, 0, 3, 0, 0], [0, 0, 0, 0, 0, 0, 0, 3, 0, 0], [0, 0, 0, 0, 0, 0, 0, 3, 0, 0],
-        [0, 2, 2, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 2, 2, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 4, 4, 4, 4, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]]
+        [1, 0, 0, 0, 0, 0, 0, 1, 0, 0]]
 statki2=tab[2]
 
 def Serializuj(tb):
     return dumps(tb)
 
-##def Wypisz(tb, n):
-##    #funkcja bez GUI
-##    if n%2==1:
-##        #do poprawy dla naszej tablicy
-##        for x in range(0,10):
-##            for y in range(0,10):
-##                if tb[n][x][y]==0:
-##                    print("0 ", end='')
-##                elif tb[n][x][y]==1:
-##                    print("1 ", end='')
-##                elif tb[n][x][y]==2:
-##                    print("2 ", end='')
-##                elif tb[n][x][y]==3:
-##                    print("3 ", end='')
-##            print()
-##        
-##    else:
-##        tablica = []
-##        for x in range(10):
-##            for y in range(10):
-##                if tb[n][x][y]==0:
-##                    #tablica[x][y]="?"
-##                    tablica.append("?")
-##                    #print("? ", end='')
-##                elif tb[n][x][y]==1:
-##                    tablica.append("x")
-##                    #tablica[x][y]="?"
-##                    #print("x ", end='')
-##                elif tb[n][x][y]==2:
-##                    tablica.append("X")
-##                    #tablica[x][y]="?"
-##                    #print("X ", end='')
-##                elif tb[n][x][y]==3:
-##                    tablica.append("o")
-##                    #tablica[x][y]="?"
-##                    #print("o ", end='')
-##            #tablica[x][y]=" "
-##            print()
-##    return tablica
-##
-##def ConvertTable(tab):
-##	tmp=[]
-##	newTab=[]
-##	k=0
-##	for i in range(10):
-##		for j in range(10):
-##			tmp.append(tab[k])
-##			k+=1
-##		newTab.append(tmp)
-##		tmp=[]
-##	return newTab
- 
+def Wypisz(tb, n):
+    tablica = []
+    if n%2==1:
+        for x in range(10):
+            for y in range(10):
+                if tb[n][x][y]==0:
+                    tablica.append("?")
+                elif tb[n][x][y]==1:
+                    tablica.append("x")
+                elif tb[n][x][y]==2:
+                    tablica.append("X")
+                elif tb[n][x][y]==3:
+                    tablica.append("o")
+    else:
+        print(tablica)
+    return tablica
+
+def ConvertTable(tab):
+	tmp=[]
+	newTab=[]
+	k=0
+	for i in range(10):
+		for j in range(10):
+			tmp.append(tab[k])
+			k+=1
+		newTab.append(tmp)
+		tmp=[]
+	return newTab
+
+
 # Multicast group parameters
 group_addr = "localhost"
 port = 2223
@@ -107,17 +94,17 @@ sock.sendto(Serializuj(statki), (group_addr, port))
 print("Wysłano!")
 mojaTura = sock.recv(4096).decode('utf-8')
 
-##for row in range(10):
-##    # dodanie rzędów
-##    statki.append([])
-##    for column in range(10):
-##        statki[row].append(0)  # dodanie kolumn (komórek)
-##        
-##for row in range(10):
-##    # dodanie rzędów
-##    statki2.append([])
-##    for column in range(10):
-##        statki2[row].append(0)  # dodanie kolumn (komórek)
+for row in range(10):
+    # dodanie rzędów
+    statki.append([])
+    for column in range(10):
+        statki[row].append(0)  # dodanie kolumn (komórek)
+        
+for row in range(10):
+    # dodanie rzędów
+    statki2.append([])
+    for column in range(10):
+        statki2[row].append(0)  # dodanie kolumn (komórek)
 
 while True:
     if mojaTura == '3':
@@ -127,67 +114,94 @@ while True:
         print("Gratulacje! Wygrałeś!")
         break
     elif mojaTura == '-2':
+        przegrana = "Niestety, przegrałeś."
         print("Niestety, przegrałeś.")
         break
     elif mojaTura == '1':
-        #strzelaj
-        strzelaj = "Twój ruch"
-        # inicjalizacja pygame
-        pygame.init()
- 
-# wielkość ekranu
-        WINDOW_SIZE = [536, 500]
-        screen = pygame.display.set_mode(WINDOW_SIZE)
- 
-# tytuł
-        pygame.display.set_caption("Statki")
+##        strzelaj = "Twój ruch"
+##        # inicjalizacja pygame
+##        font = pygame.font.SysFont("arial", 12)
+##        text = font.render("%s" %(strzelaj), True, (0, 128, 0))
+### wielkość ekranu
+##        WINDOW_SIZE = [536, 500]
+##        screen = pygame.display.set_mode(WINDOW_SIZE)
+## 
+### tytuł
+##        pygame.display.set_caption("Statki")
  
 # pętla do momentu zamknięcia programu
         done = False
         while not done:
             for event in pygame.event.get():  # zdarzenie
-                if event.type == pygame.QUIT:  # 
-                    done = True  # 
+                if event.type == pygame.QUIT:  #
+                    pygame.quit()
+                    done = True  #
+                    ##poinformować drugiego gracza, że wygrał
+                    sock.close()
+                    exit()                   
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     # odczytywanie pozycji po kliknięciu
                     pos = pygame.mouse.get_pos()
                     # zamiana współrzędnych na współrzędne plansz
                     column = pos[0] // (WIDTH + MARGIN)
                     row = pos[1] // (HEIGHT + MARGIN)
-                    statki2[row][column-11] = 1
+                    #statki2[row][column-11] = 1
                     data = "%s%s" %(int(row), int(column-11))
         #wyslij wiadomość do serwera
                     sock.sendto(data.encode('utf-8'), (group_addr, port))
         #oczekuj na odp.
                     mojaTura = sock.recv(4096).decode('utf-8')
                     tab=loads(sock.recv(4096))
-##                    tablica=Wypisz(tab,2)
-##                    tablica = ConvertTable(tablica)
-##                    print(tablica)
-##                    for row in range(10):
-##                       # magazyn.append([])
-##                        for column in range(10):
-##                           # magazyn[row].append(0)
-##                            if tablica[row][column]== 'o':
-##                                statki2[row][column]=5
-##                                #color = Blue
-##                            elif tablica[row][column]=='x':
-##                                statki2[row][column]=6
-##                                #color= Red
-##                            elif tablica[row][column] == 'X':
-##                                statki2[row][column]=7
-##                                #color=Black
-##                            else:
-##                                statki2[row][column]=8
-##                                #color=White
-##                            pygame.draw.rect(screen,
-##                                         color,
-##                                         [(MARGIN + WIDTH) * column + MARGIN + 270,
-##                                          (MARGIN + HEIGHT) * row + MARGIN,
-##                                          WIDTH,
-##                                          HEIGHT])
-##        # wyświetlenie narysowanej planszy
-##                pygame.display.flip()
+                    #print(tab_wy)
+                    #cos = Wypisz(tab,1)
+                    #print (cos)
+                    #magazyn.append(Wypisz(tab,1))
+                    #print(magazyn)
+                    tablica=Wypisz(tab,1)
+                    tablica = ConvertTable(tablica)
+                    tablica2 = Wypisz(tab,3)
+                    tablica2 = ConvertTable(tablica2)
+                    pygame.display.flip()
+##                    tablica2=Wypisz(tab,0)
+##                    tablica2= ConvertTable(tablica2)
+                    #print(tablica2)
+                    for row in range(10):
+                       # magazyn.append([])
+                        for column in range(10):
+                           # magazyn[row].append(0)
+                            if tablica[row][column]== 'o':
+                                statki2[row][column]=5
+                                #color = Blue
+                            elif tablica[row][column]=='x':
+                                statki2[row][column]=6
+                                #color= Red
+                            elif tablica[row][column] == 'X':
+                                statki2[row][column]=7
+                                #color=Black
+                            elif tablica2[row][column]=='o':
+                                statki[row][column]=8
+                                #color= Red
+                            elif tablica2[row][column] == 'x':
+                                statki[row][column]=9
+                                #color=Black
+                            elif tablica2[row][column]=='X':
+                                statki[row][column]=10
+                                #color= Red
+                            else:
+                                statki2[row][column]=8
+                                #color=White
+                            pygame.draw.rect(screen,
+                                         color,
+                                         [(MARGIN + WIDTH) * column + MARGIN + 270,
+                                          (MARGIN + HEIGHT) * row + MARGIN,
+                                          WIDTH,
+                                          HEIGHT])
+        # wyświetlenie narysowanej planszy
+
+                        
+                        pygame.display.flip()
+
+                    
 ##                    elif Wypisz(tab,1)[row,column-11] == x:
 ##
 ##                    elif Wypisz(tab,1)[row,column-11] == X:
@@ -203,7 +217,15 @@ while True:
 ##                        print("Click ", pos, "Koordynaty: ", row, column)
          
             # kolor tła
-            screen.fill(BLACK)         
+            if mojaTura == "1":
+                font = pygame.font.SysFont("arial", 16)
+                text = font.render("%s" %("Twój ruch"), True, (0, 255, 0))
+            else:
+                font = pygame.font.SysFont("arial", 16)
+                text = font.render("%s" %("Ruch przeciwnika"), True, (0, 255, 0))
+            screen.fill(BLACK)
+            screen.blit(text,(10,300))
+            #screen.fill(BLACK)         
             # plansza - rysowanie
             for row in range(10):
                 for column in range(10):
@@ -216,6 +238,12 @@ while True:
                         color = GREEN
                     if statki[row][column] == 4:
                         color = GREEN
+                    if statki[row][column] == 8:
+                        color = BLUE
+                    if statki[row][column] == 9:
+                        color = RED
+                    if statki[row][column] == 10:
+                        color = BLACK
                     pygame.draw.rect(screen,
                                      color,
                                      [(MARGIN + WIDTH) * column + MARGIN,
@@ -241,17 +269,30 @@ while True:
                                       HEIGHT])
         # wyświetlenie narysowanej planszy
             pygame.display.flip()
+        #pygame.display.flip()
+
+##        data = (row, column-11)
+##        #wyslij wiadomość do serwera
+##        sock.sendto(data.encode('utf-8'), (group_addr, port))
+##        #oczekuj na odp.
         mojaTura = sock.recv(4096).decode('utf-8')
+        print(mojaTura)
         tab=loads(sock.recv(4096))
+        #Wypisz(tab,1)
         #print(tab)
         pygame.display.flip()
+
     else:
         #czekaj
         print('Ruch przeciwnika, czekaj...')
         #oczekuj na odp.
         mojaTura = sock.recv(4096).decode('utf-8')
         tab=loads(sock.recv(4096))
+        pygame.display.flip()
+        #Wypisz(tab,1)
         #print(tab)
 sock.close()
+ 
+# zamknięcie pygame
 pygame.quit()
 
