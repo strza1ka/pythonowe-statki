@@ -68,6 +68,40 @@ def OdbierzSygnal():
         tablica2 = Wypisz(tab,1)
         tablica2 = ConvertTable(tablica2)
         print(tablica2)
+        for row in range(10):
+                       # magazyn.append([])
+            for column in range(10):
+               # magazyn[row].append(0)
+                if tablica[row][column]== 'o':
+                    statki2[row][column]=5
+                    #color = Blue
+                elif tablica[row][column]=='x':
+                    statki2[row][column]=6
+                    #color= Red
+                elif tablica[row][column] == 'X':
+                    statki2[row][column]=7
+                    #color=Black
+                elif tablica2[row][column]=='o':
+                    statki[row][column]=5
+                    #color= Red
+                elif tablica2[row][column] == 'x':
+                    statki[row][column]=6
+                    #color=Black
+                elif tablica2[row][column]=='X':
+                    statki[row][column]=7
+                    #color= Red
+                else:
+                    statki2[row][column]=8
+                    #color=White
+                pygame.draw.rect(screen,
+                             color,
+                             [(MARGIN + WIDTH) * column + MARGIN + 270,
+                              (MARGIN + HEIGHT) * row + MARGIN,
+                              WIDTH,
+                              HEIGHT])
+            # wyświetlenie narysowanej planszy
+            pygame.display.flip()
+        
     
 
 
@@ -193,41 +227,6 @@ while not done:
                 data = "%s%s" %(int(row), int(column-11))
                 #wyslij wiadomość do serwera
                 sock.sendto(data.encode('utf-8'), (group_addr, port))
-            
-                for row in range(10):
-                   # magazyn.append([])
-                    for column in range(10):
-                       # magazyn[row].append(0)
-    #### zdefiniować domyślną tablicę - tablica
-                        if tablica[row][column]== 'o':
-                            statki2[row][column]=5
-                            #color = Blue
-                        elif tablica[row][column]=='x':
-                            statki2[row][column]=6
-                            #color= Red
-                        elif tablica[row][column] == 'X':
-                            statki2[row][column]=7
-                            #color=Black
-                        elif tablica2[row][column]=='o':
-                            statki[row][column]=5
-                            #color= Red
-                        elif tablica2[row][column] == 'x':
-                            statki[row][column]=6
-                            #color=Black
-                        elif tablica2[row][column]=='X':
-                            statki[row][column]=7
-                            #color= Red
-                        else:
-                            statki2[row][column]=8
-                            #color=White
-                        pygame.draw.rect(screen,
-                                     color,
-                                     [(MARGIN + WIDTH) * column + MARGIN + 270,
-                                      (MARGIN + HEIGHT) * row + MARGIN,
-                                      WIDTH,
-                                      HEIGHT])
-                    # wyświetlenie narysowanej planszy
-                    pygame.display.flip()
                 
     timeTextBox = font.render("czas gry: " + GameTime(), True, (0, 255, 0))
     if mojaTura=='-1':
