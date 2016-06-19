@@ -3,11 +3,12 @@ from pickle import loads, dumps
 from time import sleep
 from tkinter import *
 from socketserver import BaseRequestHandler, UDPServer
+from random import randrange
 from tkinter import *
 import tkinter as tk
 import time
-from random import randrange
 import pygame
+import sys
 
 tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -288,6 +289,13 @@ def Strzal(tab, x, y, gracz):
 
 
 if __name__ == "__main__":
-    host, port = "localhost", 2223
-    server = UDPServer((host, port), MyUDPHandler)
-    server.serve_forever()
+    try:
+        host, port = "localhost", 2223
+        server = UDPServer((host, port), MyUDPHandler)
+        print("Serwer uruchomiony")
+        server.serve_forever()
+    except KeyboardInterrupt:      
+        server.server_close()
+        print("Serwer wyłączony")
+        sys.exit()
+
