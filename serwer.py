@@ -165,16 +165,19 @@ class MyUDPHandler(BaseRequestHandler):
 
             # wysyłanie informacji pozostałym:
             ##tutaj wysyłam wszystkim klientom ~~ client[i] = (ip, port)
+            
             for i in range(0, len(clients)):
+                if i==0:tmp = tab
+                else: tmp = [tab[2],tab[3],tab[0],tab[1]]
                 if clients[i] != self.client_address:
                     # wiadomość do oczekującego (tego,który nie strzelał)
                     socket.sendto(str(-czyTrafiony).encode('utf-8'), clients[i])
-                    socket.sendto(Serializuj(tab), clients[i])
+                    socket.sendto(Serializuj(tmp), clients[i])
 
                 else:
                     # wiadomość do strzelającego
                     socket.sendto(str(czyTrafiony).encode('utf-8'), clients[i])
-                    socket.sendto(Serializuj(tab), clients[i])
+                    socket.sendto(Serializuj(tmp), clients[i])
 
         else:
             print("Do gry chciał dołączyć ktoś nowy")
