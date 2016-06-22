@@ -128,7 +128,7 @@ tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]]
 clients = []
 licznik = [0,0]
-liczbaStatkow = 5
+liczbaStatkow = 1
 
 class MyUDPHandler(BaseRequestHandler):
     def handle(self):

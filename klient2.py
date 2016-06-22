@@ -56,6 +56,8 @@ def OdbierzSygnal():
     while True:
         global mojaTura
         global sock
+        #zakoncz watek jesli jest koniec gry
+        if mojaTura == '2' or mojaTura == '-2': break
         mojaTura = sock.recv(4096).decode('utf-8')
         print(GameTime() + "odebrano pierwszą wiad: ", mojaTura)
         tab=loads(sock.recv(4096))
@@ -98,7 +100,10 @@ def OdbierzSygnal():
 def Timer():
     global sekundy
     global minuty
+    global mojaTura
     while True:
+        #zakoncz watek jesli jest koniec gry
+        if mojaTura == '2' or mojaTura == '-2': break
         sleep(1)
         sekundy = sekundy+1
         if sekundy == 60:
@@ -225,10 +230,14 @@ while not done:
     elif mojaTura=='1': 
         text = font.render("Twoja kolej - strzelaj", True, (0, 255, 0))
     elif mojaTura == '2':
-        text = font.render("WYGRAŁEŚ", True, (0, 255, 0))
+        sleep(0.5)
+        print("NIESTETY WYGRAŁES :( :( :(")
+        done= True
         break
     elif mojaTura == '-2':
-        text = font.render("PRZEGRAŁEŚ", True, (0, 255, 0))
+        sleep(0.5)
+        print("PRZEGAŁEŚ!!! HAHAHAHAHAHAHHAH!!!!!")
+        done= True
         break    
         
     screen.fill(BLACK)
@@ -279,6 +288,8 @@ while not done:
     # wyświetlenie narysowanej planszy
     pygame.display.flip()
 
-
-sock.close()
+OdbierajSyngaly.join()
+stoper.join()
 pygame.quit()
+sock.close()
+
