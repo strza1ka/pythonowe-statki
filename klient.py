@@ -69,30 +69,21 @@ def OdbierzSygnal():
         tablica2 = ConvertTable(tablica2)
         print(tablica2)
         for row in range(10):
-                       # magazyn.append([])
             for column in range(10):
-               # magazyn[row].append(0)
                 if tablica[row][column]== 'o':
                     statki2[row][column]=5
-                    #color = Blue
                 elif tablica[row][column]=='x':
                     statki2[row][column]=6
-                    #color= Red
                 elif tablica[row][column] == 'X':
                     statki2[row][column]=7
-                    #color=Black
                 elif tablica2[row][column]=='o':
                     statki[row][column]=5
-                    #color= Red
                 elif tablica2[row][column] == 'x':
                     statki[row][column]=6
-                    #color=Black
                 elif tablica2[row][column]=='X':
                     statki[row][column]=7
-                    #color= Red
                 else:
                     statki2[row][column]=8
-                    #color=White
                 pygame.draw.rect(screen,
                              color,
                              [(MARGIN + WIDTH) * column + MARGIN + 270,
@@ -182,8 +173,9 @@ screen = pygame.display.set_mode(WINDOW_SIZE)
 ## -- dołącz do gry, wyślij wiadomość do serwera --
 sock.sendto("poke".encode('utf-8'), (group_addr, port))
 mojeStatki = loads(sock.recv(4096))
-print("Otrzymałem tablicę twoim statków z serwera")
+print("Otrzymałem tablicę twoich statków z serwera")
 print(mojeStatki)
+statki=mojeStatki
 ## zaimplementować - podmienić :D
 ## ....
 mojaTura = sock.recv(4096).decode('utf-8')
@@ -225,7 +217,6 @@ while not done:
                 # zamiana współrzędnych na współrzędne plansz
                 column = pos[0] // (WIDTH + MARGIN)
                 row = pos[1] // (HEIGHT + MARGIN)
-                #statki2[row][column-11] = 1
                 data = "%s%s" %(int(row), int(column-11))
                 #wyslij wiadomość do serwera
                 sock.sendto(data.encode('utf-8'), (group_addr, port))

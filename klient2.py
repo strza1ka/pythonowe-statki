@@ -176,12 +176,14 @@ stoper.start()
 pygame.init()
 pygame.display.set_caption("Statki v.2")
 screen = pygame.display.set_mode(WINDOW_SIZE)
-## ----------------  dodać ustawianie statków ----------------
-## ...
-## ...
-## ...
-sock.sendto(Serializuj(statki), (group_addr, port))
-print("Wysłano tablicę twoich statków na serwer")
+
+## -- dołącz do gry, wyślij wiadomość do serwera --
+sock.sendto("poke".encode('utf-8'), (group_addr, port))
+mojeStatki = loads(sock.recv(4096))
+print("Otrzymałem tablicę twoich statków z serwera")
+print(mojeStatki)
+statki=mojeStatki
+
 mojaTura = sock.recv(4096).decode('utf-8')
 if mojaTura == '3': print("Wszystkie miejsca zajęte, niestety nie zagrasz")
 OdbierajSyngaly = Thread(target=OdbierzSygnal,args=())
