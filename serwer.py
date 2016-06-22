@@ -132,6 +132,10 @@ liczbaStatkow = 1
 
 class MyUDPHandler(BaseRequestHandler):
     def handle(self):
+        global licznik
+        global tab
+        global liczbaStatkow
+        global clients
         # dodaj clienta jeśli nie ma go w bazie klientów i jest mniej niż 2 osoby
         socket = self.request[1]
         if self.client_address not in clients and len(clients)<2:
@@ -167,7 +171,7 @@ class MyUDPHandler(BaseRequestHandler):
             ##tutaj wysyłam wszystkim klientom ~~ client[i] = (ip, port)
             
             for i in range(0, len(clients)):
-                if i==0:tmp = tab
+                if i==0: tmp = tab
                 else: tmp = [tab[2],tab[3],tab[0],tab[1]]
                 if clients[i] != self.client_address:
                     # wiadomość do oczekującego (tego,który nie strzelał)
@@ -178,10 +182,16 @@ class MyUDPHandler(BaseRequestHandler):
                     # wiadomość do strzelającego
                     socket.sendto(str(czyTrafiony).encode('utf-8'), clients[i])
                     socket.sendto(Serializuj(tmp), clients[i])
-
+            if czyTrafiony == 2:
+                print("Gra została zakończona - można zacząć kolejną")
+                #czyszczenie zmiennych
+                clients = []
+                licznik = [0,0]
+                liczbaStatkow = 1
+                tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]]
         else:
             print("Do gry chciał dołączyć ktoś nowy")
-            socket.sendto(str(3).encode('utf-8'), self.client_address)
+            socket.sendto(dumps('3'), self.client_address)
 
 
 def KtoryGracz(port):
