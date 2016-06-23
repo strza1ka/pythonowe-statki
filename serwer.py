@@ -445,7 +445,7 @@ def Strzal(tab, x, y, gracz):
 
 if __name__ == "__main__":
     try:
-        host, port = "10.55.5.82", 2223
+        host, port = "localhost", 2223
         server = UDPServer((host, port), MyUDPHandler)
         print(Time(),"Serwer uruchomiony")
         server.serve_forever()
