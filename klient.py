@@ -116,22 +116,15 @@ def OdbierzSygnal():
                     statki2[row][column]=6
                 elif tablica[row][column] == 'X':
                     statki2[row][column]=7
-                elif tablica2[row][column]=='o':
-                    statki[row][column]=5
-                elif tablica2[row][column] == 'x':
-                    statki[row][column]=6
-                elif tablica2[row][column]=='X':
-                    statki[row][column]=7
-                else:
-                    statki2[row][column]=8
-                pygame.draw.rect(screen,
-                             color,
-                             [(MARGIN + WIDTH) * column + MARGIN + 270,
-                              (MARGIN + HEIGHT) * row + MARGIN,
-                              WIDTH,
-                              HEIGHT])
+        for row2 in range(10):
+            for column2 in range(10):
+                if tablica2[row2][column2]=='o':
+                    statki[row2][column2]=5
+                elif tablica2[row2][column2] == 'x':
+                    statki[row2][column2]=6
+                elif tablica2[row2][column2]=='X':
+                    statki[row2][column2]=7
             # wyświetlenie narysowanej planszy
-            pygame.display.flip()
         
 #odmierza czas
 def Timer():
@@ -303,21 +296,19 @@ while not done:
                               HEIGHT])
 
         
-    for row in range(10):
-        for column in range(10):
+    for row2 in range(10):
+        for column2 in range(10):
             color = WHITE
-            if statki2[row][column] == 5:
+            if statki2[row2][column2] == 5:
                 color = BLUE
-            if statki2[row][column] == 6:
+            if statki2[row2][column2] == 6:
                 color = RED
-            if statki2[row][column] == 7:
+            if statki2[row2][column2] == 7:
                 color = BLACK
-            if statki2[row][column] == 8:
-                color = WHITE
             pygame.draw.rect(screen,
                              color,
-                             [(MARGIN + WIDTH) * column + MARGIN + 270,
-                              (MARGIN + HEIGHT) * row + MARGIN,
+                             [(MARGIN + WIDTH) * column2 + MARGIN + 270,
+                              (MARGIN + HEIGHT) * row2 + MARGIN,
                               WIDTH,
                               HEIGHT])
     # wyświetlenie narysowanej planszy
