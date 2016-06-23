@@ -90,9 +90,9 @@ def OdbierzSygnal():
         #zakoncz watek jesli jest koniec gry
         if mojaTura == '2' or mojaTura == '-2': break
         mojaTura = sock.recv(4096).decode('utf-8')
-        print(GameTime() + "odebrano pierwszą wiad: ", mojaTura)
+        print(GameTime() + " odebrano wiadomość: ", mojaTura)
         tab=loads(sock.recv(4096))
-        print("odebrano statki")
+        print(GameTime() + " odebrano tablicę statków")
         #tablica - przechowuje planszę przeciwnika
         tablica = Wypisz(tab,3)
         tablica = ConvertTable(tablica)
