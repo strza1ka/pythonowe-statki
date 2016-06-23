@@ -1,10 +1,10 @@
 from pickle import loads, dumps
 from socket import *
-import pygame
 from pygame.locals import *
 from sys import exit
 from threading import Thread
 from time import sleep
+import pygame
 
 
 # kolory

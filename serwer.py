@@ -1,13 +1,10 @@
-# coding=utf-8
 from pickle import loads, dumps
-from time import sleep
-from tkinter import *
+from datetime import datetime
 from socketserver import BaseRequestHandler, UDPServer
 from random import randrange
-import time
-import pygame
-import sys
+from sys import exit
 from random import randint
+import pygame
 
 #zaimplementowane tablice do losowania
 maps = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -158,6 +155,12 @@ clients = []
 licznik = [0,0]
 liczbaStatkow = 4
 
+  
+def Time():
+    time = datetime.now()
+    if time.second < 10: return str(time.hour)+":"+str(time.minute)+":0"+str(time.second)+" "
+    else: return str(time.hour)+":"+str(time.minute)+":"+str(time.second)+" "
+
 class MyUDPHandler(BaseRequestHandler):
     def handle(self):
         global licznik
@@ -172,9 +175,9 @@ class MyUDPHandler(BaseRequestHandler):
             socket.sendto(dumps("yes"), self.client_address)
             # - losuj i wyślij statki graczowi - 
             global statki
-            print(self.request[0].decode("utf-8"))
+            print(Time(), self.request[0].decode("utf-8"))
             los = randint(0,8)
-            print("Wylosowano mapę: ", maps[los])
+            print(Time(), "Wylosowano mapę: ", maps[los])
             statki = maps[los]
             socket.sendto(Serializuj(statki), self.client_address)
 
@@ -191,7 +194,7 @@ class MyUDPHandler(BaseRequestHandler):
             # data - pole w które strzelił gracz, np. 12
             data = self.request[0].decode('utf-8')
             # - sprawdzamy czy trafił -
-            print(self.client_address, " strzelił w: ", data)
+            print(Time(), self.client_address, " strzelił w: ", data)
             czyTrafiony = Strzal(tab, int(data[0]), int(data[1]), KtoryGracz(self.client_address[1]))
 
             # - wysyłanie informacji pozostałym -          
@@ -209,18 +212,17 @@ class MyUDPHandler(BaseRequestHandler):
                     
             # - czyszczenie zmiennych w przypadku zakończenia gry -
             if czyTrafiony == 2:
-                print("Gra została zakończona - można zacząć kolejną")
+                print(Time(),"Gra została zakończona - można zacząć kolejną")
                 clients = []
                 licznik = [0,0]
                 liczbaStatkow = 1
                 tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]]
         # -- client nie został dodany i nie ma go w bazie --
         else:
-            print("Do gry chciał dołączyć ktoś nowy")
+            print(Time(),"Do gry chciał dołączyć ktoś nowy")
             # - wyślij graczowi odmowę dołączenia do gry [serwer pełny] -
             socket.sendto(dumps("no"), self.client_address)
-
-
+        
 def KtoryGracz(port):
     if port == clients[0][1]:
         return 1
@@ -373,7 +375,7 @@ def Strzal(tab, x, y, gracz):
     kraniec = [x, y]
     if tab[g + 1][x][y] == 0:
         if tab[g][x][y] == 0:
-            print("pudło!")
+            print(Time(),"pudło!")
             tab[g + 1][x][y] = 3
             return -1
         else:
@@ -417,7 +419,7 @@ def Strzal(tab, x, y, gracz):
                 licznik[gracz-1] += 1
                 if licznik[gracz-1] == liczbaStatkow:
                     return 2
-                print("Trafiony zatopiony")
+                print(Time(),"Trafiony zatopiony")
                 return 1
             elif ZliczStatek(tab[g + 1], kraniec[0], kraniec[1], kier) == tab[g][kraniec[0]][kraniec[1]]:
                 tr = 1
@@ -425,14 +427,14 @@ def Strzal(tab, x, y, gracz):
                 licznik[gracz-1]+=1
                 if licznik[gracz-1] == liczbaStatkow:
                     return 2
-                print("Trafiony zatopiony")
+                print(Time(),"Trafiony zatopiony")
                 return 1
             if tr == 0:
-                print("trafiony")
+                print(Time(),"trafiony")
                 tab[g + 1][x][y] = 1
                 return 1
     else:
-        print("Już raz strzelałeś w to miejsce, wybierz inne.")
+        print(Time(),"Już raz strzelałeś w to miejsce, wybierz inne.")
         return 1
 
 
@@ -440,10 +442,10 @@ if __name__ == "__main__":
     try:
         host, port = "localhost", 2223
         server = UDPServer((host, port), MyUDPHandler)
-        print("Serwer uruchomiony")
+        print(Time(),"Serwer uruchomiony")
         server.serve_forever()
     except KeyboardInterrupt:      
         server.server_close()
-        print("Serwer wyłączony")
-        sys.exit()
+        print(Time(),"Serwer wyłączony")
+        exit()
 
