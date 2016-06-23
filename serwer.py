@@ -238,9 +238,9 @@ def Serializuj(tb):
  
 def ZliczStatek(tb, x, y, kier):
     licznik = 0
+    #zlicza ile kfelków danego statku zostało zestrzelonych. 
     if kier == 0:
         while y < 9 and tb[x][y] != 0:
-            #if tb[x][y] != 0:
             licznik += 1
             y += 1
         if y == 9 and tb[x][y] != 0:
@@ -267,6 +267,7 @@ def ZliczStatek(tb, x, y, kier):
 
 
 def ZatopStatek(tab, x1, y1, gracz, kier):
+    #sprawia, że do okoła zatopionego statku pojawiają siepudla
     tb = tab[(gracz + 1) % 3 + 1]
     x = x1
     y = y1
@@ -373,12 +374,14 @@ def Strzal(tab, x, y, gracz):
     #print(x, y)
     licz = [0, 0, 0, 0]
     kraniec = [x, y]
+    #sprawdzamy w tablicy statków wartość pola - jak 0 mamy pudło
     if tab[g + 1][x][y] == 0:
         if tab[g][x][y] == 0:
             print(Time(),"pudło!")
             tab[g + 1][x][y] = 3
             return -1
         else:
+            #w przeciwnym wypadku sprawdza, czy statek jest zatopiony szerzej niż tylko jedno pole i w którą stronę od właśnie wybranego statku
             tab[g + 1][x][y] = 1
             for kier in range(0, 4):
                 if kier == 0:
@@ -414,6 +417,7 @@ def Strzal(tab, x, y, gracz):
                 if licz[e] != 0:
                     kier = e
             if licz == [0, 0, 0, 0] and tab[g][x][y] == 1:
+                #jeżeli statek jest jednomasztowy, od razu zatpiamy
                 tr = 1
                 ZatopStatek(tab, kraniec[0], kraniec[1], gracz, kier)
                 licznik[gracz-1] += 1
@@ -422,6 +426,7 @@ def Strzal(tab, x, y, gracz):
                 print(Time(),"Trafiony zatopiony")
                 return 1
             elif ZliczStatek(tab[g + 1], kraniec[0], kraniec[1], kier) == tab[g][kraniec[0]][kraniec[1]]:
+                #jeżeli zatopione kafelki są równe długości statku (zapisane w każdym polu), zatapiamy statek
                 tr = 1
                 ZatopStatek(tab, kraniec[0], kraniec[1], gracz, kier)
                 licznik[gracz-1]+=1
