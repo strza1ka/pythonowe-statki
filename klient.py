@@ -239,9 +239,11 @@ while not done:
                 # zamiana współrzędnych na współrzędne plansz
                 column = pos[0] // (WIDTH + MARGIN)
                 row = pos[1] // (HEIGHT + MARGIN)
-                data = "%s%s" %(int(row), int(column-11))
+                while 11<=column<=20 and 0<=row<=9: 
+                    data = "%s%s" %(int(row), int(column-11))
                 #wyslij wiadomość do serwera
-                sock.sendto(data.encode('utf-8'), (group_addr, port))
+                    sock.sendto(data.encode('utf-8'), (group_addr, port))
+                    break
                 
     timeTextBox = font.render("czas gry: " + GameTime(), True, (0, 255, 0))
     if mojaTura=='-1':
