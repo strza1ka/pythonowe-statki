@@ -110,25 +110,53 @@ maps = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 2, 0],
          [0, 0, 3, 3, 3, 0, 1, 0, 2, 0]]]
         
-tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-       [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+       
+       [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-       [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+       
+       [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-       [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+       
+       [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]]
+
 clients = []
 licznik = [0,0]
-liczbaStatkow = 1
+liczbaStatkow = 4
 
 class MyUDPHandler(BaseRequestHandler):
     def handle(self):
@@ -136,13 +164,13 @@ class MyUDPHandler(BaseRequestHandler):
         global tab
         global liczbaStatkow
         global clients
-        # dodaj clienta jeśli nie ma go w bazie klientów i jest mniej niż 2 osoby
+        # -- dodaj clienta, jeśli nie jest w bazie i baza < 2 osoby --
         socket = self.request[1]
         if self.client_address not in clients and len(clients)<2:
             clients.append(self.client_address)
-            print("Do gry dołączył gracz: ", self.client_address)
-
-            #losuję tablicę statków dla gracza
+            # - prześlij akceptację - 
+            socket.sendto(dumps("yes"), self.client_address)
+            # - losuj i wyślij statki graczowi - 
             global statki
             print(self.request[0].decode("utf-8"))
             los = randint(0,8)
@@ -150,26 +178,23 @@ class MyUDPHandler(BaseRequestHandler):
             statki = maps[los]
             socket.sendto(Serializuj(statki), self.client_address)
 
-            #gracz, który pierwszy się dołączył, drugi zaczyna
+            # - gracz, który pierwszy się dołączył, drugi zaczyna -
             if len(clients) == 1:
                 tab[0] = statki
                 socket.sendto(str(-1).encode('utf-8'), clients[0])
             else:
                 tab[2] = statki
                 socket.sendto(str(1).encode('utf-8'), clients[1])
-            # print(clients)
-        #jeśli klient w bazie to go obsługujemy
-        elif self.client_address in clients: 
-            #data - pole w które strzelił gracz, np. 12
-            data = self.request[0].decode('utf-8')
 
-            #sprawdzamy czy trafił
+        # -- jeśli klient w bazie to go obsługujemy --
+        elif self.client_address in clients: 
+            # data - pole w które strzelił gracz, np. 12
+            data = self.request[0].decode('utf-8')
+            # - sprawdzamy czy trafił -
             print(self.client_address, " strzelił w: ", data)
             czyTrafiony = Strzal(tab, int(data[0]), int(data[1]), KtoryGracz(self.client_address[1]))
 
-            # wysyłanie informacji pozostałym:
-            ##tutaj wysyłam wszystkim klientom ~~ client[i] = (ip, port)
-            
+            # - wysyłanie informacji pozostałym -          
             for i in range(0, len(clients)):
                 if i==0: tmp = tab
                 else: tmp = [tab[2],tab[3],tab[0],tab[1]]
@@ -177,21 +202,23 @@ class MyUDPHandler(BaseRequestHandler):
                     # wiadomość do oczekującego (tego,który nie strzelał)
                     socket.sendto(str(-czyTrafiony).encode('utf-8'), clients[i])
                     socket.sendto(Serializuj(tmp), clients[i])
-
                 else:
                     # wiadomość do strzelającego
                     socket.sendto(str(czyTrafiony).encode('utf-8'), clients[i])
                     socket.sendto(Serializuj(tmp), clients[i])
+                    
+            # - czyszczenie zmiennych w przypadku zakończenia gry -
             if czyTrafiony == 2:
                 print("Gra została zakończona - można zacząć kolejną")
-                #czyszczenie zmiennych
                 clients = []
                 licznik = [0,0]
                 liczbaStatkow = 1
                 tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]]
+        # -- client nie został dodany i nie ma go w bazie --
         else:
             print("Do gry chciał dołączyć ktoś nowy")
-            socket.sendto(dumps('3'), self.client_address)
+            # - wyślij graczowi odmowę dołączenia do gry [serwer pełny] -
+            socket.sendto(dumps("no"), self.client_address)
 
 
 def KtoryGracz(port):

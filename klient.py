@@ -24,49 +24,87 @@ MARGIN = 5
 #wielkość okna
 WINDOW_SIZE = [536, 400]
 
-
+#stoper
 sekundy = 0
 minuty = 0
 
-tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-       [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+       
+       [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-       [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+       
+       [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-       [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+       
+       [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]]
-statki = [[0, 0, 0, 1, 0, 0, 0, 4, 0, 0], [0, 0, 0, 0, 0, 0, 0, 4, 0, 0], [0, 0, 0, 0, 0, 0, 0, 4, 0, 0],
-        [0, 2, 2, 0, 0, 0, 0, 4, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 3, 3, 3, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+
+statki=[[0, 0, 0, 1, 0, 0, 0, 4, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 4, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 4, 0, 0],
+        [0, 2, 2, 0, 0, 0, 0, 4, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 3, 3, 3, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]]
+
 statki2 = tab[0]
 
 mojaTura = -15
+##-2 - przegrałem grę
+##-1 - kolej przeciwnika
+##1 - moja kolej
+##2 - wygrałem grę
+##3 - nie ma miejsc na serwerze
 
 def OdbierzSygnal():
+    global mojaTura
+    global sock
     while True:
-        global mojaTura
-        global sock
         #zakoncz watek jesli jest koniec gry
         if mojaTura == '2' or mojaTura == '-2': break
         mojaTura = sock.recv(4096).decode('utf-8')
         print(GameTime() + "odebrano pierwszą wiad: ", mojaTura)
         tab=loads(sock.recv(4096))
         print("odebrano statki")
-        global tablica
         tablica = Wypisz(tab,3)
         tablica = ConvertTable(tablica)
         print(tablica)
-        global tablica2
         tablica2 = Wypisz(tab,1)
         tablica2 = ConvertTable(tablica2)
         print(tablica2)
@@ -95,9 +133,6 @@ def OdbierzSygnal():
             # wyświetlenie narysowanej planszy
             pygame.display.flip()
         
-    
-
-
 #odmierza czas
 def Timer():
     global sekundy
@@ -154,44 +189,37 @@ def ConvertTable(tab):
 
 
 
-
-
-## --- SOCKET ---
-# Multicast group parameters
+## --- tworzenie socketa ---
 group_addr = "localhost"
 port = 2223
-# Stworzenie socketa
 sock = socket(AF_INET, SOCK_DGRAM)
-# Opcje socketa
-sock.setsockopt(IPPROTO_IP, IP_MULTICAST_TTL, 32)
-sock.setsockopt(IPPROTO_IP, IP_MULTICAST_LOOP, 1)
-
-
-## --- GRA ----
-
-
-
 
 ## -- dołącz do gry, wyślij wiadomość do serwera --
 sock.sendto("poke".encode('utf-8'), (group_addr, port))
-mojeStatki = loads(sock.recv(4096))
-if mojeStatki =='3': #jesli zamiast statków dostaliśmy 3 tzn. że serwer jest pełny
+acceptation = loads(sock.recv(4096))
+## -- sprawdź odpowiedź czy możesz dołączyć -- 
+if acceptation == "no":
     print("Wszystkie miejsca zajęte, niestety nie zagrasz")
     sock.close()
     exit()
+## -- jeśli tak to zapisz swoje statki i turę oraz zainicjuj pygame i wątki --
+mojeStatki = loads(sock.recv(4096))
 print("Otrzymałem tablicę twoich statków z serwera")
 print(mojeStatki)
-statki=mojeStatki
-stoper = Thread(target=Timer,args=())
-stoper.start()
+statki = mojeStatki
+mojaTura = sock.recv(4096).decode('utf-8')
+
 pygame.init()
 pygame.display.set_caption("Statki")
 screen = pygame.display.set_mode(WINDOW_SIZE)
 
-mojaTura = sock.recv(4096).decode('utf-8')
-OdbierajSyngaly = Thread(target=OdbierzSygnal,args=())
-OdbierajSyngaly.start()
+stoper = Thread(target=Timer,args=())
+stoper.start()
 
+odbierajSyngaly = Thread(target=OdbierzSygnal,args=())
+odbierajSyngaly.start()
+
+## -- pygame --
 
 for row in range(10):
     # dodanie rzędów
@@ -206,7 +234,8 @@ for row in range(10):
         statki2[row].append(0)  # dodanie kolumn (komórek)
 
 font = pygame.font.SysFont("arial", 16)
-# pętla programu
+
+# -- pętla programu, pygame --
 done = False
 while not done:
     for event in pygame.event.get():  # zdarzenie
@@ -214,8 +243,6 @@ while not done:
             pygame.quit()
             done = True
             ## ---------------- poinformować drugiego gracza, że wygrał ----------------
-            ## ...
-            ## ...
             ## ...
             sock.close()
             exit()                   
@@ -237,12 +264,12 @@ while not done:
         text = font.render("Twoja kolej - strzelaj", True, (0, 255, 0))
     elif mojaTura == '2':
         sleep(0.5)
-        print("NIESTETY WYGRAŁES :( :( :(")
+        print("Gratulacje, wygrałeś")
         done= True
         break
     elif mojaTura == '-2':
         sleep(0.5)
-        print("PRZEGAŁEŚ!!! HAHAHAHAHAHAHHAH!!!!!")
+        print("Niestety, przegrałeś")
         done= True
         break    
         
@@ -274,6 +301,8 @@ while not done:
                               (MARGIN + HEIGHT) * row + MARGIN,
                               WIDTH,
                               HEIGHT])
+
+        
     for row in range(10):
         for column in range(10):
             color = WHITE
@@ -294,7 +323,9 @@ while not done:
     # wyświetlenie narysowanej planszy
     pygame.display.flip()
 
+## -- zakończ program --
+    
 stoper.join()
-OdbierajSyngaly.join()
+odbierajSyngaly.join()
 sock.close()
 pygame.quit()
