@@ -237,22 +237,26 @@ def Serializuj(tb):
 def ZliczStatek(tb, x, y, kier):
     licznik = 0
     if kier == 0:
-        while y < 9 and tb[x][y + 1] != 0:
-            if tb[x][y] != 0:
-                licznik += 1
-                y += 1
-        if tb[x][y] != 0:
+        while y < 9 and tb[x][y] != 0:
+            #if tb[x][y] != 0:
+            licznik += 1
+            y += 1
+        if y == 9 and tb[x][y] != 0:
             licznik += 1
     elif kier == 1:
         while x > 0 and tb[x][y] != 0:
             licznik += 1
             x -= 1
+        if x==0 and tb[x][y] != 0:
+            licznik += 1
     elif kier == 2:
         while y > 0 and tb[x][y] != 0:
             licznik += 1
             y -= 1
+        if y==0 and tb[x][y] != 0:
+            licznik += 1
     elif kier == 3:
-        while x < 9 and tb[x + 1][y] != 0:
+        while x < 9 and tb[x][y] != 0:
             licznik += 1
             x += 1
         if tb[x][y] != 0:
