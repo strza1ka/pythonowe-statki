@@ -28,6 +28,7 @@ WINDOW_SIZE = [536, 400]
 sekundy = 0
 minuty = 0
 
+#tablica przechowująca informacje o rozgrywce
 tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -72,17 +73,7 @@ tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]]
 
-statki=[[0, 0, 0, 1, 0, 0, 0, 4, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 4, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 4, 0, 0],
-        [0, 2, 2, 0, 0, 0, 0, 4, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 3, 3, 3, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]]
-
+statki=[[]]
 statki2 = tab[0]
 
 mojaTura = -15
@@ -102,12 +93,14 @@ def OdbierzSygnal():
         print(GameTime() + "odebrano pierwszą wiad: ", mojaTura)
         tab=loads(sock.recv(4096))
         print("odebrano statki")
+        #tablica - przechowuje planszę przeciwnika
         tablica = Wypisz(tab,3)
         tablica = ConvertTable(tablica)
-        print(tablica)
+        #print(tablica)
+        #tablica2 - przechowuje planszę gracza
         tablica2 = Wypisz(tab,1)
         tablica2 = ConvertTable(tablica2)
-        print(tablica2)
+        #print(tablica2)
         for row in range(10):
             for column in range(10):
                 if tablica[row][column]== 'o':

@@ -4,13 +4,12 @@ from time import sleep
 from tkinter import *
 from socketserver import BaseRequestHandler, UDPServer
 from random import randrange
-from tkinter import *
-import tkinter as tk
 import time
 import pygame
 import sys
 from random import randint
 
+#zaimplementowane tablice do losowania
 maps = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 2, 0, 0, 0],
@@ -109,7 +108,8 @@ maps = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 2, 0],
          [0, 0, 3, 3, 3, 0, 1, 0, 2, 0]]]
-        
+
+#tablica przechowująca informacje o rozgrywce
 tab = [[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
